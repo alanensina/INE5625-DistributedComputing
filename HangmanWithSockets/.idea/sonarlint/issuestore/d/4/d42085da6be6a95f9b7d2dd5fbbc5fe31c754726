@@ -1,0 +1,14 @@
+
+_
+java:S2095"DUse try-with-resources or close this "Socket" in a "finally" clause.(רקחתÿÿÿÿ
+“
+java:S1130"xRemove the declaration of thrown exception 'java.net.UnknownHostException' which is a subclass of 'java.io.IOException'.(ײ»ה€‎ÿÿÿÿ
+“
+java:S1130"xRemove the declaration of thrown exception 'java.net.UnknownHostException' which is a subclass of 'java.io.IOException'.(ֻװמ¯רÿÿÿÿ
+J
+java:S6212"/Declare this local variable with "var" instead.(רקחתÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ÿײֳוûÿÿÿÿ
+J
+java:S6212#"/Declare this local variable with "var" instead.(Úמ¿ערÿÿÿÿ
+E
+java:S6212$"/Declare this local variable with "var" instead.(ק¿ב’

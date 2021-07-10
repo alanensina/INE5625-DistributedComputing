@@ -1,0 +1,17 @@
+
+l
+java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(ã½Üãøÿÿÿÿ8êÍ¸ˆ©/
+D
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8¹¯µˆ©/
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¶Ú‘úÿÿÿÿ8üÙ·ˆ©/
+Q
+java:S6212"/Declare this local variable with "var" instead.(ã½Üãøÿÿÿÿ8ïÍ¸ˆ©/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ˆ³àá8À¯µˆ©/
+Q
+java:S6212!"/Declare this local variable with "var" instead.(¢ÌÅşúÿÿÿÿ8´µºˆ©/
+U	java:S106""9Replace this use of System.out or System.err by a logger.(”Ş›8Á¯µˆ©/
+Q
+java:S6212'"/Declare this local variable with "var" instead.(¾˜Âƒÿÿÿÿÿ8…„·ˆ©/
+T
+java:S11351"2Complete the task associated to this TODO comment.(µ®Ëğûÿÿÿÿ8Ã¯µˆ©/
