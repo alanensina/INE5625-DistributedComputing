@@ -1,5 +1,6 @@
 
-L
-java:S6212"/Declare this local variable with "var" instead.(Ï¹ò8²ªÁˆ©/
-O
-java:S1135"2Complete the task associated to this TODO comment.(¤¬›œ8»”Áˆ©/
+E
+java:S6212"/Declare this local variable with "var" instead.(Ï¹ò
+H
+java:S1135"2Complete the task associated to this TODO comment.(¤¬›œ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(‚Ï²ü

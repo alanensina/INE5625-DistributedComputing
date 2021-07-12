@@ -20,7 +20,9 @@ public class ClientHandler implements Runnable{
         // quando chegar uma msg, distribui pra todos
         Scanner s = new Scanner(this.client);
         while (s.hasNextLine()) {
-            server.distribuiMensagem(s.nextLine());
+            String word = s.nextLine();
+            System.out.println("Word/Letter received: " + word);
+            this.server.sendMessage(word);
         }
         s.close();
     }

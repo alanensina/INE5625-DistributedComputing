@@ -1,5 +1,6 @@
 package sockets;
 
+import service.GameService;
 import threads.ClientHandler;
 
 import java.io.IOException;
@@ -16,22 +17,22 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         // inicia o servidor
-        new Server(12345).executa();
+       new Server(12345).start();
     }
 
-    public Server (int porta) {
-        this.port = porta;
+    public Server (int port) {
+        this.port = port;
         this.clients = new ArrayList<PrintStream>();
     }
 
-    public void executa () throws IOException {
+    public void start() throws IOException {
         ServerSocket serverSocket = new ServerSocket(this.port);
-        System.out.println("Porta 12345 aberta!");
+        System.out.println("Server online on port: " + this.port);
 
         while (true) {
             // aceita um clientSocket
             Socket clientSocket = serverSocket.accept();
-            System.out.println("Nova conexão com o clientSocket " +
+            System.out.println("A new client has connected: " +
                     clientSocket.getInetAddress().getHostAddress()
             );
 
@@ -45,10 +46,10 @@ public class Server {
         }
     }
 
-    public void distribuiMensagem(String msg) {
+    public void sendMessage(String msg) {
         // envia msg para todo mundo
-        for (PrintStream cliente : this.clients) {
-            cliente.println(msg);
+        for (PrintStream client : this.clients) {
+            client.println(msg);
         }
     }
 }

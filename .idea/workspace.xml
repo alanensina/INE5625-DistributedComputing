@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14601139-be7f-4cbd-a4ec-bef530f9d636" name="Default Changelist" comment="" />
+    <list default="true" id="14601139-be7f-4cbd-a4ec-bef530f9d636" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/d/4/d42085da6be6a95f9b7d2dd5fbbc5fe31c754726" beforeDir="false" afterPath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/d/4/d42085da6be6a95f9b7d2dd5fbbc5fe31c754726" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/d/6/d604621c8823ff9adb173b6169f3afa7458c6c87" beforeDir="false" afterPath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/d/6/d604621c8823ff9adb173b6169f3afa7458c6c87" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/e/5/e5ec39222a4c49e589b525db27016f5077804fe9" beforeDir="false" afterPath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/e/5/e5ec39222a4c49e589b525db27016f5077804fe9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/e/7/e79bbeb91458f708339c0d1f5911f7e69e3a5cb2" beforeDir="false" afterPath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/e/7/e79bbeb91458f708339c0d1f5911f7e69e3a5cb2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/HangmanWithSockets/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,29 +26,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="HangmanWithSockets" />
       <method v="2">
@@ -66,6 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1625930502798</updated>
       <workItem from="1625930504686" duration="65000" />
+      <workItem from="1626026471561" duration="6000" />
     </task>
     <servers />
   </component>
@@ -82,5 +69,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
