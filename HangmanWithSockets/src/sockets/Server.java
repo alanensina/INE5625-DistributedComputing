@@ -1,55 +1,56 @@
 package sockets;
 
 import service.GameService;
-import threads.ClientHandler;
+import static model.Gibbet.*;
 
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Server {
 
-    private int port;
-    private List<PrintStream> clients;
+    private static final int PORT = 12345;
+    private static final String EXIT = "exit";
+    private ServerSocket serverSocket;
+    private Socket clientSocket;
 
-    public static void main(String[] args) throws IOException {
-        // inicia o servidor
-       new Server(12345).start();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Server server = new Server();
+        server.startSockets();
+        server.startHangman();
     }
 
-    public Server (int port) {
-        this.port = port;
-        this.clients = new ArrayList<PrintStream>();
+    private void startSockets() throws IOException{
+            this.serverSocket = new ServerSocket(PORT);
+            System.out.println("Server's up on " + PORT + " port.");
+            this.clientSocket = serverSocket.accept();
+            System.out.println("A new client has connected: " + clientSocket.getInetAddress().getHostAddress());
     }
 
-    public void start() throws IOException {
-        ServerSocket serverSocket = new ServerSocket(this.port);
-        System.out.println("Server online on port: " + this.port);
+    private void startHangman() throws IOException, ClassNotFoundException {
+        GameService service = new GameService();
+        service.startGame();
+        System.out.println("Welcome to Hangman!");
+        printGibbet();
+        service.printArrayOfLetters();
 
-        while (true) {
-            // aceita um clientSocket
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("A new client has connected: " +
-                    clientSocket.getInetAddress().getHostAddress()
-            );
+            while (service.isAlive()) {
 
-            // adiciona saida do clientSocket à lista
-            PrintStream ps = new PrintStream(clientSocket.getOutputStream());
-            this.clients.add(ps);
+                ObjectInputStream input = new ObjectInputStream(clientSocket.getInputStream());
+                String guess = (String) input.readObject();
+                if(EXIT.equalsIgnoreCase(guess)){
+                    closeSockets(this.serverSocket, this.clientSocket);
+                    input.close();
+                    break;
+                }
 
-            // cria tratador de clientSocket numa nova thread
-            ClientHandler clientHandler = new ClientHandler(clientSocket.getInputStream(), this);
-            new Thread(clientHandler).start();
-        }
+                service.makeAGuess(guess);
+            }
     }
 
-    public void sendMessage(String msg) {
-        // envia msg para todo mundo
-        for (PrintStream client : this.clients) {
-            client.println(msg);
-        }
+    private void closeSockets(ServerSocket serverSocket, Socket clientSocket) throws IOException{
+        this.clientSocket.close();
+        this.serverSocket.close();
     }
 }

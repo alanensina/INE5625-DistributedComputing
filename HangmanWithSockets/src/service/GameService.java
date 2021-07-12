@@ -42,6 +42,7 @@ public class GameService {
 
             if(!checkArrayOfLetters() || this.finish){
                 System.out.println("Congratulations, you win!");
+                System.out.println("Please, type 'exit' to quit the game!");
                 break;
             }
         }
@@ -49,7 +50,12 @@ public class GameService {
         if(!this.isAlive()){
             printGibbetGameOver();
             System.out.println("The word was: " + this.getWord());
+            System.out.println("Please, type 'exit' to quit the game!");
         }
+    }
+
+    public boolean isAlive() {
+        return this.isAlive;
     }
 
     private boolean checkArrayOfLetters() {
@@ -167,59 +173,11 @@ public class GameService {
         this.isAlive = this.getAttempts() > 0;
     }
 
-    public char[] getLetters() {
-        return letters;
-    }
-
-    public void setLetters(char[] letters) {
-        this.letters = letters;
-    }
-
-    public boolean isFinish() {
-        return finish;
-    }
-
-    public void setFinish(boolean finish) {
-        this.finish = finish;
-    }
-
-    public List<String> getUsedLetters() {
-        return usedLetters;
-    }
-
-    public void setUsedLetters(List<String> usedLetters) {
-        this.usedLetters = usedLetters;
-    }
-
-    public List<String> getUsedWords() {
-        return usedWords;
-    }
-
-    public void setUsedWords(List<String> usedWords) {
-        this.usedWords = usedWords;
-    }
-
     public String getWord() {
         return word;
     }
 
-    public void setWord(String word) {
-        this.word = word;
-    }
-
     public int getAttempts() {
         return attempts;
-    }
-
-    public void setAttempts(int attempts) {
-        this.attempts = attempts;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
-    }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
     }
 }
