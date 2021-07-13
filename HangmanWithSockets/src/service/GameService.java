@@ -1,5 +1,7 @@
 package service;
 
+import enumeration.Status;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Paths;
@@ -13,9 +15,10 @@ import static model.Gibbet.*;
 
 public class GameService {
 
-    private final int TOTAL_WORDS = 200;
+    private final int TOTAL_WORDS = 50;
     private final String EN = "words-en.txt";
     private final String PTBR = "words-pt.txt";
+    private static final String EXIT = "exit";
 
     private char[] letters;
     private boolean finish = false;
@@ -29,7 +32,12 @@ public class GameService {
         this.generateWord();
     }
 
-    public void makeAGuess(String guess){
+    public Status makeAGuess(String guess){
+
+        if(EXIT.equalsIgnoreCase(guess)){
+            return Status.EXIT;
+        }
+
         if(this.isAlive()){
 
             if(guess.length() > 1){
@@ -43,6 +51,7 @@ public class GameService {
             if(!checkArrayOfLetters() || this.finish){
                 System.out.println("Congratulations, you win!");
                 System.out.println("Please, type 'exit' to quit the game!");
+                return Status.SUCCESS;
             }
         }
 
@@ -50,7 +59,10 @@ public class GameService {
             printGibbetGameOver();
             System.out.println("The word was: " + this.getWord());
             System.out.println("Please, type 'exit' to quit the game!");
+            return Status.FAIL;
         }
+
+        return Status.IN_PROGRESS;
     }
 
     public boolean isAlive() {
@@ -175,4 +187,5 @@ public class GameService {
     public int getAttempts() {
         return attempts;
     }
+
 }

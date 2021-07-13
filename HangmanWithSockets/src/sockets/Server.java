@@ -51,9 +51,13 @@ public class Server {
 
     private void closeSockets(ServerSocket serverSocket, Socket clientSocket) throws IOException{
         System.out.println("Exiting game...");
-        this.clientSocket.close();
         this.serverSocket.close();
+        this.clientSocket.close();
         System.out.println("Good bye!");
+
+        if(this.serverSocket.isClosed() && this.clientSocket.isClosed()){
+            System.exit(0);
+        }
     }
 
     public void sendMessage(String msg) throws IOException {
@@ -61,10 +65,5 @@ public class Server {
             this.closeSockets(this.serverSocket, this.clientSocket);
             return;
         }
-
-        // Send message to everybody
-//        for (PrintStream cliente : this.streams) {
-//            cliente.println(msg);
-//        }
     }
 }

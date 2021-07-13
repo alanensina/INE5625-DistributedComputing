@@ -23,6 +23,8 @@ public class Client {
     private void startSocket() throws IOException{
         this.clientSocket = new Socket(HOST, PORT);
         System.out.println("You're connected!");
+        System.out.println("Welcome to Hangman!");
+        this.callForAGuess();
 
         // Thread to receive server's messages
         Receiver receiver = new Receiver(this.clientSocket.getInputStream());
@@ -32,22 +34,29 @@ public class Client {
         Scanner input = new Scanner(System.in);
 
         PrintStream output = new PrintStream(this.clientSocket.getOutputStream());
-        while (input.hasNextLine()) {
+        while (true) {
             String msg = input.nextLine();
-            checkExitMessage(msg);
-            output.println(msg);
+            if(EXIT.equalsIgnoreCase(msg)){
+                output.println(msg);
+                this.closeConnection();
+            }else{
+                output.println(msg);
+                this.callForAGuess();
+            }
         }
     }
 
-    private void closeSocket(Socket clientSocket) throws IOException{
-        clientSocket.close();
-    }
-
-    private void checkExitMessage(String msg) throws IOException {
-        if(EXIT.equalsIgnoreCase(msg)){
+    private void closeConnection() throws IOException {
             System.out.println("Exiting game...");
-            this.closeSocket(this.clientSocket);
             System.out.println("Good bye!");
-        }
+            this.clientSocket.close();
+
+            if(this.clientSocket.isClosed()){
+                System.exit(0);
+            }
+    }
+
+    private void callForAGuess(){
+        System.out.println("Insert a guess or type 'exit' if you want to quit: ");
     }
 }
