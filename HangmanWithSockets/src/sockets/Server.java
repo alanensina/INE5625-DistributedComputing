@@ -63,8 +63,8 @@ public class Server {
         }
 
         // Send message to everybody
-        for (PrintStream cliente : this.streams) {
-            cliente.println(msg);
-        }
+//        for (PrintStream cliente : this.streams) {
+//            cliente.println(msg);
+//        }
     }
 }

@@ -22,7 +22,7 @@ public class GameService {
     private List<String> usedLetters = new ArrayList<>();
     private List<String> usedWords = new ArrayList<>();
     private String word;
-    private int attempts;
+    private int attempts = 4;
     private boolean isAlive = true;
 
     public void startGame(){
@@ -30,7 +30,7 @@ public class GameService {
     }
 
     public void makeAGuess(String guess){
-        while(this.isAlive()){
+        if(this.isAlive()){
 
             if(guess.length() > 1){
                 usedWords.add(guess);
@@ -43,7 +43,6 @@ public class GameService {
             if(!checkArrayOfLetters() || this.finish){
                 System.out.println("Congratulations, you win!");
                 System.out.println("Please, type 'exit' to quit the game!");
-                break;
             }
         }
 
@@ -96,12 +95,10 @@ public class GameService {
         checkGibbet();
     }
 
-    private String generateWord()  {
-        String word;
-
+    private void generateWord()  {
         try{
             List<String> allWords = readAllLines(Paths.get("src/resources/" + EN), Charset.defaultCharset());
-            word = allWords.get(new Random().nextInt(TOTAL_WORDS));
+            this.word = allWords.get(new Random().nextInt(TOTAL_WORDS));
         }catch(IOException e){
             throw new RuntimeException("Error to read the file.");
         }
@@ -111,8 +108,6 @@ public class GameService {
         for(int i = 0 ; i < word.length() ; i++){
             this.letters[i] = '_';
         }
-
-        return word;
     }
 
     private void checkGibbet(){

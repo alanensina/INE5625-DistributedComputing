@@ -35,7 +35,6 @@ public class Client {
         while (input.hasNextLine()) {
             String msg = input.nextLine();
             checkExitMessage(msg);
-
             output.println(msg);
         }
     }
