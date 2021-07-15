@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 import static java.nio.file.Files.readAllLines;
 import static model.Gibbet.*;
@@ -28,34 +27,34 @@ public class GameService {
     private int attempts = 4;
     private boolean isAlive = true;
 
-    public void startGame(){
+    public void startGame() {
         this.generateWord();
     }
 
-    public Status makeAGuess(String guess){
+    public Status makeAGuess(String guess) {
 
-        if(EXIT.equalsIgnoreCase(guess)){
+        if (EXIT.equalsIgnoreCase(guess)) {
             return Status.EXIT;
         }
 
-        if(this.isAlive()){
+        if (this.isAlive()) {
 
-            if(guess.length() > 1){
+            if (guess.length() > 1) {
                 usedWords.add(guess);
                 checkWord(guess);
-            }else{
+            } else {
                 usedLetters.add(guess);
                 checkLetter(guess);
             }
 
-            if(!checkArrayOfLetters() || this.finish){
+            if (!checkArrayOfLetters() || this.finish) {
                 System.out.println("Congratulations, you win!");
                 System.out.println("Please, type 'exit' to quit the game!");
                 return Status.SUCCESS;
             }
         }
 
-        if(!this.isAlive()){
+        if (!this.isAlive()) {
             printGibbetGameOver();
             System.out.println("The word was: " + this.getWord());
             System.out.println("Please, type 'exit' to quit the game!");
@@ -71,8 +70,8 @@ public class GameService {
 
     private boolean checkArrayOfLetters() {
 
-        for(int i = 0 ; i < this.letters.length ; i++){
-            if(this.letters[i] == '_'){
+        for (int i = 0; i < this.letters.length; i++) {
+            if (this.letters[i] == '_') {
                 return true;
             }
         }
@@ -84,46 +83,46 @@ public class GameService {
         boolean aux = false;
         char character = letter.charAt(0);
 
-        for(int i = 0 ; i < this.getWord().length() ; i++){
-            if(character == this.getWord().charAt(i)){
+        for (int i = 0; i < this.getWord().length(); i++) {
+            if (character == this.getWord().charAt(i)) {
                 aux = true;
                 this.letters[i] = character;
             }
         }
 
-        if(!aux){
+        if (!aux) {
             this.fail();
         }
         checkGibbet();
     }
 
     private void checkWord(String letter) {
-        if(letter.equalsIgnoreCase(this.getWord())){
+        if (letter.equalsIgnoreCase(this.getWord())) {
             this.finish = true;
             return;
-        }else{
+        } else {
             this.fail();
         }
         checkGibbet();
     }
 
-    private void generateWord()  {
-        try{
+    private void generateWord() {
+        try {
             List<String> allWords = readAllLines(Paths.get("src/resources/" + PTBR), Charset.defaultCharset());
             this.word = allWords.get(new Random().nextInt(TOTAL_WORDS));
-        }catch(IOException e){
+        } catch (IOException e) {
             throw new RuntimeException("Error to read the file.");
         }
 
         this.letters = new char[word.length()];
 
-        for(int i = 0 ; i < word.length() ; i++){
+        for (int i = 0; i < word.length(); i++) {
             this.letters[i] = '_';
         }
     }
 
-    private void checkGibbet(){
-        switch(this.getAttempts()){
+    private void checkGibbet() {
+        switch (this.getAttempts()) {
             case 1:
                 printGibbet1Attempts();
                 break;
@@ -150,17 +149,17 @@ public class GameService {
 
     private void printUsedWordsAndLetters() {
 
-        if(usedWords.size() > 0){
+        if (usedWords.size() > 0) {
             System.out.print("Used words: ");
-            this.usedWords.forEach(letter ->{
+            this.usedWords.forEach(letter -> {
                 System.out.print(letter + ", ");
             });
             System.out.println();
         }
 
-        if(usedLetters.size() > 0){
+        if (usedLetters.size() > 0) {
             System.out.print("Used letters: ");
-            this.usedLetters.forEach(letter ->{
+            this.usedLetters.forEach(letter -> {
                 System.out.print(letter + ", ");
             });
             System.out.println();
@@ -169,13 +168,13 @@ public class GameService {
 
     public void printArrayOfLetters() {
         System.out.print("Word: ");
-        for(int i = 0; i < this.letters.length ; i++){
+        for (int i = 0; i < this.letters.length; i++) {
             System.out.print(this.letters[i] + " ");
         }
         System.out.println();
     }
 
-    private void fail(){
+    private void fail() {
         this.attempts--;
         this.isAlive = this.getAttempts() > 0;
     }

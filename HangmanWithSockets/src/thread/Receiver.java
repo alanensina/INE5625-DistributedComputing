@@ -3,7 +3,7 @@ package thread;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class Receiver implements Runnable{
+public class Receiver implements Runnable {
 
     private InputStream server;
 

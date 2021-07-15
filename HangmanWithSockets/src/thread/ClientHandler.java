@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class ClientHandler implements Runnable{
+public class ClientHandler implements Runnable {
 
     private static final String EXIT = "exit";
 
@@ -36,22 +36,22 @@ public class ClientHandler implements Runnable{
             try {
                 String msg = s.nextLine();
 
-                    Status status = this.service.makeAGuess(msg);
+                Status status = this.service.makeAGuess(msg);
 
-                    switch(status){
-                        case SUCCESS:
-                        case EXIT:
-                        case FAIL:
-                            socketServer.sendMessage(EXIT);
-                            break;
+                switch (status) {
+                    case SUCCESS:
+                    case EXIT:
+                    case FAIL:
+                        socketServer.sendMessage(EXIT);
+                        break;
 
-                        case IN_PROGRESS:
-                            socketServer.sendMessage(this.callForAGuess());
-                            break;
+                    case IN_PROGRESS:
+                        socketServer.sendMessage(this.callForAGuess());
+                        break;
 
-                        default:
-                            throw new RuntimeException("Error to find status.");
-                    }
+                    default:
+                        throw new RuntimeException("Error to find status.");
+                }
 
             } catch (IOException e) {
                 throw new RuntimeException("Error to send a message to socket: " + e.getMessage());
@@ -60,7 +60,7 @@ public class ClientHandler implements Runnable{
         s.close();
     }
 
-    private String callForAGuess(){
+    private String callForAGuess() {
         return "Insert a guess or type 'exit' if you want to quit: ";
     }
 }

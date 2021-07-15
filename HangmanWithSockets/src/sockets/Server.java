@@ -1,12 +1,8 @@
 package sockets;
 
-import service.GameService;
 import thread.ClientHandler;
 
-import static model.Gibbet.*;
-
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,7 +17,7 @@ public class Server {
     private Socket clientSocket;
     private List<PrintStream> streams;
 
-    public Server(){
+    public Server() {
         this.streams = new ArrayList<>();
     }
 
@@ -30,40 +26,39 @@ public class Server {
         server.startSockets();
     }
 
-    private void startSockets() throws IOException{
-            this.serverSocket = new ServerSocket(PORT);
-            System.out.println("Server's up on " + PORT + " port.");
+    private void startSockets() throws IOException {
+        this.serverSocket = new ServerSocket(PORT);
+        System.out.println("Server's up on " + PORT + " port.");
 
-            while(true){
-                // Accept a client
-                this.clientSocket = serverSocket.accept();
-                System.out.println("A new client has connected: " + clientSocket.getInetAddress().getHostAddress());
+        while (true) {
+            // Accept a client
+            this.clientSocket = serverSocket.accept();
+            System.out.println("A new client has connected: " + clientSocket.getInetAddress().getHostAddress());
 
-                // Add the client's output to the list
-                PrintStream ps = new PrintStream(this.clientSocket.getOutputStream());
-                this.streams.add(ps);
+            // Add the client's output to the list
+            PrintStream ps = new PrintStream(this.clientSocket.getOutputStream());
+            this.streams.add(ps);
 
-                // Handle with the client on a new Thread
-                ClientHandler handler = new ClientHandler(this.clientSocket.getInputStream(), this);
-                new Thread(handler).start();
-            }
+            // Handle with the client on a new Thread
+            ClientHandler handler = new ClientHandler(this.clientSocket.getInputStream(), this);
+            new Thread(handler).start();
+        }
     }
 
-    private void closeSockets(ServerSocket serverSocket, Socket clientSocket) throws IOException{
+    private void closeSockets(ServerSocket serverSocket, Socket clientSocket) throws IOException {
         System.out.println("Exiting game...");
         this.serverSocket.close();
         this.clientSocket.close();
         System.out.println("Good bye!");
 
-        if(this.serverSocket.isClosed() && this.clientSocket.isClosed()){
+        if (this.serverSocket.isClosed() && this.clientSocket.isClosed()) {
             System.exit(0);
         }
     }
 
     public void sendMessage(String msg) throws IOException {
-        if(EXIT.equalsIgnoreCase(msg)){
+        if (EXIT.equalsIgnoreCase(msg)) {
             this.closeSockets(this.serverSocket, this.clientSocket);
-            return;
         }
     }
 }
