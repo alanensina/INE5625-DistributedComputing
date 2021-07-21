@@ -24,7 +24,7 @@ public class GameService {
     private List<String> usedLetters = new ArrayList<>();
     private List<String> usedWords = new ArrayList<>();
     private String word;
-    private int attempts = 4;
+    private int attempts = 6;
     private boolean isAlive = true;
 
     public void startGame() {
@@ -49,7 +49,7 @@ public class GameService {
 
             if (!checkArrayOfLetters() || this.finish) {
                 System.out.println("Congratulations, you win!");
-                System.out.println("Please, type 'exit' to quit the game!");
+                System.out.println("The word was: " + this.getWord());
                 return Status.SUCCESS;
             }
         }
@@ -57,7 +57,6 @@ public class GameService {
         if (!this.isAlive()) {
             printGibbetGameOver();
             System.out.println("The word was: " + this.getWord());
-            System.out.println("Please, type 'exit' to quit the game!");
             return Status.FAIL;
         }
 
@@ -136,6 +135,14 @@ public class GameService {
                 break;
 
             case 4:
+                printGibbet4Attempts();
+                break;
+
+            case 5:
+                printGibbet5Attempts();
+                break;
+
+            case 6:
                 printGibbet();
                 break;
 

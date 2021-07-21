@@ -2,7 +2,7 @@ package model;
 
 public class Gibbet {
 
-    public static void printGibbet(){
+    public static void printGibbet() {
         System.out.println("----------------------");
         System.out.println("|                    |");
         System.out.println("|");
@@ -13,7 +13,7 @@ public class Gibbet {
         System.out.println("|________________________________________");
     }
 
-    public static void printGibbet3Attempts(){
+    public static void printGibbet5Attempts() {
         System.out.println("----------------------");
         System.out.println("|                    |");
         System.out.println("|                    O");
@@ -24,7 +24,7 @@ public class Gibbet {
         System.out.println("|________________________________________");
     }
 
-    public static void printGibbet2Attempts(){
+    public static void printGibbet4Attempts() {
         System.out.println("----------------------");
         System.out.println("|                    |");
         System.out.println("|                    O");
@@ -35,25 +35,47 @@ public class Gibbet {
         System.out.println("|________________________________________");
     }
 
-    public static void printGibbet1Attempts(){
+    public static void printGibbet3Attempts() {
         System.out.println("----------------------");
         System.out.println("|                    |");
         System.out.println("|                    O");
-        System.out.println("|                   (|)");
+        System.out.println("|                    |--");
         System.out.println("|                      ");
         System.out.println("|");
         System.out.println("|");
         System.out.println("|________________________________________");
     }
 
-    public static void printGibbetGameOver(){
+    public static void printGibbet2Attempts() {
         System.out.println("----------------------");
         System.out.println("|                    |");
         System.out.println("|                    O");
-        System.out.println("|                   (|)");
+        System.out.println("|                  --|--");
+        System.out.println("|                      ");
+        System.out.println("|");
+        System.out.println("|");
+        System.out.println("|________________________________________");
+    }
+
+    public static void printGibbet1Attempts() {
+        System.out.println("----------------------");
+        System.out.println("|                    |");
+        System.out.println("|                    O");
+        System.out.println("|                  --|--");
+        System.out.println("|                     ) ");
+        System.out.println("|");
+        System.out.println("|");
+        System.out.println("|________________________________________");
+    }
+
+    public static void printGibbetGameOver() {
+        System.out.println("----------------------");
+        System.out.println("|                    |");
+        System.out.println("|                    O");
+        System.out.println("|                  --|--");
         System.out.println("|                   ( )");
         System.out.println("|");
         System.out.println("|");
-        System.out.println("|___________YOU HAVE FAILED!____________");
+        System.out.println("|________________GAME OVER!____________");
     }
 }

@@ -35,24 +35,8 @@ public class ClientHandler implements Runnable {
         while (s.hasNextLine()) {
             try {
                 String msg = s.nextLine();
-
                 Status status = this.service.makeAGuess(msg);
-
-                switch (status) {
-                    case SUCCESS:
-                    case EXIT:
-                    case FAIL:
-                        socketServer.sendMessage(EXIT);
-                        break;
-
-                    case IN_PROGRESS:
-                        socketServer.sendMessage(this.callForAGuess());
-                        break;
-
-                    default:
-                        throw new RuntimeException("Error to find status.");
-                }
-
+                socketServer.sendMessage(status.name());
             } catch (IOException e) {
                 throw new RuntimeException("Error to send a message to socket: " + e.getMessage());
             }
@@ -60,7 +44,4 @@ public class ClientHandler implements Runnable {
         s.close();
     }
 
-    private String callForAGuess() {
-        return "Insert a guess or type 'exit' if you want to quit: ";
-    }
 }

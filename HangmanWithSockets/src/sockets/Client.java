@@ -41,7 +41,6 @@ public class Client {
                 this.closeConnection();
             } else {
                 output.println(msg);
-                this.callForAGuess();
             }
         }
     }
