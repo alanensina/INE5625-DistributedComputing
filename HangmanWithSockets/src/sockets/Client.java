@@ -34,6 +34,7 @@ public class Client {
         Scanner input = new Scanner(System.in);
 
         PrintStream output = new PrintStream(this.clientSocket.getOutputStream());
+
         while (true) {
             String msg = input.nextLine();
             if (EXIT.equalsIgnoreCase(msg)) {

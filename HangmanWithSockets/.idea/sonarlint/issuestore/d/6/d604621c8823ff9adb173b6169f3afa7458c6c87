@@ -1,19 +1,0 @@
-
-e
-java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(ã½Üãøÿÿÿÿ
-M
-java:S1128"0Remove this unused import 'service.GameService'.(òŒ ’8€üË¾©/
-t
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¶Ú‘úÿÿÿÿ
-J
-java:S6212"/Declare this local variable with "var" instead.(ã½Üãøÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ê˜üÿÿÿÿ
-J
-java:S6212""/Declare this local variable with "var" instead.(¢ÌÅşúÿÿÿÿ
-N	java:S106#"9Replace this use of System.out or System.err by a logger.(„”Ùµ
-J
-java:S6212("/Declare this local variable with "var" instead.(¾˜Âƒÿÿÿÿÿ
-E
-java:S6212,"/Declare this local variable with "var" instead.(Ê“¼•
-M
-java:S11352"2Complete the task associated to this TODO comment.(µ®Ëğûÿÿÿÿ

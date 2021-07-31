@@ -2,80 +2,80 @@ package model;
 
 public class Gibbet {
 
-    public static void printGibbet() {
-        System.out.println("----------------------");
-        System.out.println("|                    |");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|________________________________________");
+    public static String getInitialGibbet() {
+        return "----------------------" + "\n" +
+                "|                    |" + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|________________________________________";
     }
 
-    public static void printGibbet5Attempts() {
-        System.out.println("----------------------");
-        System.out.println("|                    |");
-        System.out.println("|                    O");
-        System.out.println("|                     ");
-        System.out.println("|                     ");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|________________________________________");
+    public static String getGibbet5Attempts() {
+        return "----------------------" + "\n" +
+                "|                    |" + "\n" +
+                "|                    O" + "\n" +
+                "|                     " + "\n" +
+                "|                      " + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|________________________________________";
     }
 
-    public static void printGibbet4Attempts() {
-        System.out.println("----------------------");
-        System.out.println("|                    |");
-        System.out.println("|                    O");
-        System.out.println("|                    |");
-        System.out.println("|                     ");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|________________________________________");
+    public static String getGibbet4Attempts() {
+        return "----------------------" + "\n" +
+                "|                    |" + "\n" +
+                "|                    O" + "\n" +
+                "|                    |" + "\n" +
+                "|                      " + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|________________________________________";
     }
 
-    public static void printGibbet3Attempts() {
-        System.out.println("----------------------");
-        System.out.println("|                    |");
-        System.out.println("|                    O");
-        System.out.println("|                    |--");
-        System.out.println("|                      ");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|________________________________________");
+    public static String getGibbet3Attempts() {
+        return "----------------------" + "\n" +
+                "|                    |" + "\n" +
+                "|                    O" + "\n" +
+                "|                    |--" + "\n" +
+                "|                      " + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|________________________________________";
     }
 
-    public static void printGibbet2Attempts() {
-        System.out.println("----------------------");
-        System.out.println("|                    |");
-        System.out.println("|                    O");
-        System.out.println("|                  --|--");
-        System.out.println("|                      ");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|________________________________________");
+    public static String getGibbet2Attempts() {
+        return "----------------------" + "\n" +
+                "|                    |" + "\n" +
+                "|                    O" + "\n" +
+                "|                  --|--" + "\n" +
+                "|                      " + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|________________________________________";
     }
 
-    public static void printGibbet1Attempts() {
-        System.out.println("----------------------");
-        System.out.println("|                    |");
-        System.out.println("|                    O");
-        System.out.println("|                  --|--");
-        System.out.println("|                     ) ");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|________________________________________");
+    public static String getGibbet1Attempts() {
+        return "----------------------" + "\n" +
+                "|                    |" + "\n" +
+                "|                    O" + "\n" +
+                "|                  --|--" + "\n" +
+                "|                     ) " + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|________________________________________";
     }
 
-    public static void printGibbetGameOver() {
-        System.out.println("----------------------");
-        System.out.println("|                    |");
-        System.out.println("|                    O");
-        System.out.println("|                  --|--");
-        System.out.println("|                   ( )");
-        System.out.println("|");
-        System.out.println("|");
-        System.out.println("|________________GAME OVER!____________");
+    public static String getGibbetGameOver() {
+        return "----------------------" + "\n" +
+                "|                    |" + "\n" +
+                "|                    O" + "\n" +
+                "|                  --|--" + "\n" +
+                "|                   ( )" + "\n" +
+                "|" + "\n" +
+                "|" + "\n" +
+                "|________________GAME OVER!____________";
     }
 }

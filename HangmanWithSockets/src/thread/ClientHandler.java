@@ -1,6 +1,7 @@
 package thread;
 
 import enumeration.Status;
+import model.Response;
 import service.GameService;
 import sockets.Server;
 
@@ -27,16 +28,16 @@ public class ClientHandler implements Runnable {
 
     public void run() {
         System.out.println("Welcome to the Hangman!");
-        printGibbet();
-        this.service.printArrayOfLetters();
+        getInitialGibbet();
+        this.service.buildArrayOfLetters();
 
         // When a message arrives, send to everybody
         Scanner s = new Scanner(this.clientInput);
         while (s.hasNextLine()) {
             try {
                 String msg = s.nextLine();
-                Status status = this.service.makeAGuess(msg);
-                socketServer.sendMessage(status.name());
+                Response response = this.service.makeAGuess(msg);
+                socketServer.sendMessage(response);
             } catch (IOException e) {
                 throw new RuntimeException("Error to send a message to socket: " + e.getMessage());
             }

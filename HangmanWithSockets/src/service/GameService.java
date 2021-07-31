@@ -1,6 +1,7 @@
 package service;
 
 import enumeration.Status;
+import model.Response;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -11,6 +12,7 @@ import java.util.Random;
 
 import static java.nio.file.Files.readAllLines;
 import static model.Gibbet.*;
+import static utils.Messages.*;
 
 public class GameService {
 
@@ -31,14 +33,17 @@ public class GameService {
         this.generateWord();
     }
 
-    public Status makeAGuess(String guess) {
+    public Response makeAGuess(String guess) {
+
+        Response response = new Response();
 
         if (EXIT.equalsIgnoreCase(guess)) {
-            return Status.EXIT;
+            return response
+                    .setStatus(Status.EXIT)
+                    .addMessage(EXIT_GAME_MESSAGE);
         }
 
         if (this.isAlive()) {
-
             if (guess.length() > 1) {
                 usedWords.add(guess);
                 checkWord(guess);
@@ -47,20 +52,35 @@ public class GameService {
                 checkLetter(guess);
             }
 
+            response.addMessages(
+                    getGibbet(),
+                    buildArrayOfLetters(),
+                    buildUsedWordsAndLetters()
+            );
+
             if (!checkArrayOfLetters() || this.finish) {
-                System.out.println("Congratulations, you win!");
-                System.out.println("The word was: " + this.getWord());
-                return Status.SUCCESS;
+                return response
+                        .setStatus(Status.SUCCESS)
+                        .addMessages(
+                                CONGRATULATIONS_WIN_MESSAGE,
+                                String.format(THE_WORLD_IS_MESSAGE, this.getWord())
+                        );
             }
         }
 
         if (!this.isAlive()) {
-            printGibbetGameOver();
-            System.out.println("The word was: " + this.getWord());
-            return Status.FAIL;
+            return response
+                    .setStatus(Status.FAIL)
+                    .addMessages(
+                            getGibbetGameOver(),
+                            String.format(THE_WORLD_IS_MESSAGE, this.getWord()),
+                            FAILED_GAME_MESSAGE
+                    );
         }
 
-        return Status.IN_PROGRESS;
+        return response
+                .setStatus(Status.IN_PROGRESS)
+                .addMessage(ANOTHER_GUESS_MESSAGE);
     }
 
     public boolean isAlive() {
@@ -68,7 +88,6 @@ public class GameService {
     }
 
     private boolean checkArrayOfLetters() {
-
         for (int i = 0; i < this.letters.length; i++) {
             if (this.letters[i] == '_') {
                 return true;
@@ -92,17 +111,14 @@ public class GameService {
         if (!aux) {
             this.fail();
         }
-        checkGibbet();
     }
 
     private void checkWord(String letter) {
         if (letter.equalsIgnoreCase(this.getWord())) {
             this.finish = true;
-            return;
         } else {
             this.fail();
         }
-        checkGibbet();
     }
 
     private void generateWord() {
@@ -120,65 +136,53 @@ public class GameService {
         }
     }
 
-    private void checkGibbet() {
+    private String getGibbet() {
         switch (this.getAttempts()) {
             case 1:
-                printGibbet1Attempts();
-                break;
+                return getGibbet1Attempts();
 
             case 2:
-                printGibbet2Attempts();
-                break;
-
+                return getGibbet2Attempts();
             case 3:
-                printGibbet3Attempts();
-                break;
-
+                return getGibbet3Attempts();
             case 4:
-                printGibbet4Attempts();
-                break;
-
+                return getGibbet4Attempts();
             case 5:
-                printGibbet5Attempts();
-                break;
-
+                return getGibbet5Attempts();
             case 6:
-                printGibbet();
-                break;
-
+                return getInitialGibbet();
             default:
                 System.out.println("Error");
                 break;
         }
-        printArrayOfLetters();
-        printUsedWordsAndLetters();
+        return null;
     }
 
-    private void printUsedWordsAndLetters() {
+    private String buildUsedWordsAndLetters() {
+        StringBuilder message = new StringBuilder();
 
         if (usedWords.size() > 0) {
-            System.out.print("Used words: ");
-            this.usedWords.forEach(letter -> {
-                System.out.print(letter + ", ");
-            });
-            System.out.println();
+            message.append(USED_WORDS_MESSAGE);
+            this.usedWords.forEach(letter -> message.append(letter).append(", "));
+            message.append("\n");
         }
 
         if (usedLetters.size() > 0) {
-            System.out.print("Used letters: ");
-            this.usedLetters.forEach(letter -> {
-                System.out.print(letter + ", ");
-            });
-            System.out.println();
+            message.append(USED_LETTERS_MESSAGE);
+            this.usedLetters.forEach(letter -> message.append(letter).append(", "));
+            message.append("\n");
         }
+
+        return message.toString();
     }
 
-    public void printArrayOfLetters() {
-        System.out.print("Word: ");
-        for (int i = 0; i < this.letters.length; i++) {
-            System.out.print(this.letters[i] + " ");
+    public String buildArrayOfLetters() {
+        StringBuilder message = new StringBuilder();
+        message.append(WORDS_LETTERS_MESSAGE);
+        for (char letter : this.letters) {
+            message.append(letter).append(" ");
         }
-        System.out.println();
+        return message.toString();
     }
 
     private void fail() {
