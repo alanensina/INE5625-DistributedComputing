@@ -15,12 +15,7 @@ public class Server {
 
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    private List<PrintStream> streams;
     private ObjectOutputStream output;
-
-    public Server() {
-        this.streams = new ArrayList<>();
-    }
 
     public static void main(String[] args) throws IOException {
         Server server = new Server();
@@ -37,10 +32,6 @@ public class Server {
             System.out.println("A new client has connected: " + clientSocket.getInetAddress().getHostAddress());
 
             output = new ObjectOutputStream(clientSocket.getOutputStream());
-
-            // Add the client's output to the list
-            PrintStream ps = new PrintStream(this.clientSocket.getOutputStream());
-            this.streams.add(ps);
 
             // Handle with the client on a new Thread
             ClientHandler handler = new ClientHandler(this.clientSocket.getInputStream(), this);
@@ -66,5 +57,15 @@ public class Server {
             case IN_PROGRESS -> output.writeObject(response);
             default -> throw new RuntimeException("Message not found.");
         }
+    }
+
+    public void sendWelcomeMessage(List<Response> responses){
+        responses.forEach(response -> {
+            try {
+                output.writeObject(response);
+            } catch (IOException e) {
+                throw new RuntimeException("Message not found.");
+            }
+        });
     }
 }

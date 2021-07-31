@@ -24,7 +24,6 @@ public class Client {
         this.clientSocket = new Socket(HOST, PORT);
         System.out.println("You're connected!");
         System.out.println("Welcome to Hangman!");
-        this.callForAGuess();
 
         // Thread to receive server's messages
         Receiver receiver = new Receiver(this.clientSocket.getInputStream());

@@ -9,6 +9,8 @@ import static model.Gibbet.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientHandler implements Runnable {
@@ -27,9 +29,13 @@ public class ClientHandler implements Runnable {
     }
 
     public void run() {
-        System.out.println("Welcome to the Hangman!");
-        getInitialGibbet();
-        this.service.buildArrayOfLetters();
+        List<Response> responses = Arrays.asList(
+                new Response().setStatus(Status.WELCOME).addMessage("Welcome to the Hangman"),
+                new Response().setStatus(Status.WELCOME).addMessage(getInitialGibbet()),
+                new Response().setStatus(Status.WELCOME).addMessage(this.service.buildArrayOfLetters()),
+                new Response().setStatus(Status.WELCOME).addMessage("Insert a guess or type 'exit' if you want to quit: "));
+
+        socketServer.sendWelcomeMessage(responses);
 
         // When a message arrives, send to everybody
         Scanner s = new Scanner(this.clientInput);
