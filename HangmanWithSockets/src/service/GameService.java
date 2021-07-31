@@ -152,7 +152,7 @@ public class GameService {
             case 6:
                 return getInitialGibbet();
             default:
-                System.out.println("Error");
+                System.out.println("Game finished!");
                 break;
         }
         return null;

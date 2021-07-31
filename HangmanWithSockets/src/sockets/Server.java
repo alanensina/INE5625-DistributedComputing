@@ -6,7 +6,6 @@ import thread.ClientHandler;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Server {
@@ -52,9 +51,9 @@ public class Server {
         switch (response.getStatus()) {
             case EXIT, FAIL, SUCCESS -> {
                 output.writeObject(response);
-                this.closeSockets();
             }
             case IN_PROGRESS -> output.writeObject(response);
+            case RESTART -> System.out.println();
             default -> throw new RuntimeException("Message not found.");
         }
     }
