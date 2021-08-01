@@ -4,5 +4,7 @@ public enum Status {
     EXIT,
     FAIL,
     IN_PROGRESS,
-    SUCCESS;
+    RESTART,
+    SUCCESS,
+    WELCOME;
 }

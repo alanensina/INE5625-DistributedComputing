@@ -12,6 +12,8 @@ public class Client {
     private static final int PORT = 12345;
     private static final String HOST = "127.0.0.1";
     private static final String EXIT = "exit";
+    private static final String RESTART = "restart";
+    private Thread thread;
 
     private Socket clientSocket;
 
@@ -23,23 +25,28 @@ public class Client {
     private void startSocket() throws IOException {
         this.clientSocket = new Socket(HOST, PORT);
         System.out.println("You're connected!");
-        System.out.println("Welcome to Hangman!");
-        this.callForAGuess();
 
         // Thread to receive server's messages
         Receiver receiver = new Receiver(this.clientSocket.getInputStream());
-        new Thread(receiver).start();
+        thread = new Thread(receiver);
+        thread.start();
 
         // Read messages and send to the server
         Scanner input = new Scanner(System.in);
 
         PrintStream output = new PrintStream(this.clientSocket.getOutputStream());
+
         while (true) {
             String msg = input.nextLine();
             if (EXIT.equalsIgnoreCase(msg)) {
                 output.println(msg);
                 this.closeConnection();
-            } else {
+            }
+            else if (RESTART.equalsIgnoreCase(msg)) {
+                output.println(msg);
+                restartGame();
+            }
+            else {
                 output.println(msg);
             }
         }
@@ -55,7 +62,11 @@ public class Client {
         }
     }
 
-    private void callForAGuess() {
-        System.out.println("Insert a guess or type 'exit' if you want to quit: ");
+    public void restartGame() throws IOException {
+        System.out.println("Restarting game...");
+        this.clientSocket.close();
+        thread.interrupt();
+
+        startSocket();
     }
 }
