@@ -41,12 +41,10 @@ public class Client {
             if (EXIT.equalsIgnoreCase(msg)) {
                 output.println(msg);
                 this.closeConnection();
-            }
-            else if (RESTART.equalsIgnoreCase(msg)) {
+            } else if (RESTART.equalsIgnoreCase(msg)) {
                 output.println(msg);
                 restartGame();
-            }
-            else {
+            } else {
                 output.println(msg);
             }
         }

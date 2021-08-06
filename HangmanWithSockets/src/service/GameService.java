@@ -123,7 +123,7 @@ public class GameService {
 
     private void generateWord() {
         try {
-            List<String> allWords = readAllLines(Paths.get("src/resources/" + PTBR), Charset.defaultCharset());
+            List<String> allWords = readAllLines(Paths.get("src/resources/" + EN), Charset.defaultCharset());
             this.word = allWords.get(new Random().nextInt(TOTAL_WORDS));
         } catch (IOException e) {
             throw new RuntimeException("Error to read the file.");

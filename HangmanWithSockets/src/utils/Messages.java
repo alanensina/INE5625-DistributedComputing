@@ -6,7 +6,7 @@ public class Messages {
     }
 
     public static final String CONGRATULATIONS_WIN_MESSAGE = "Congratulations, you win! Type 'restart' to restart game or 'exit' to quit.";
-    public static final String FAILED_GAME_MESSAGE = "You failed! Game over. ype 'restart' to restart game or 'exit' to quit.";
+    public static final String FAILED_GAME_MESSAGE = "You failed! Game over. Type 'restart' to restart game or 'exit' to quit.";
     public static final String EXIT_GAME_MESSAGE = "Exiting game...";
     public static final String ANOTHER_GUESS_MESSAGE = "Insert a guess or type 'restart' to new game or 'exit' to quit: ";
 
